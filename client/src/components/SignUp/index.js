@@ -1,6 +1,10 @@
 import React from "react";
 import SignUpIn from "../Tabs";
 
+
+
+
+
 const SignUp = () => {
   return (
     <div>
