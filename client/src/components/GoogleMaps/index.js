@@ -8,6 +8,11 @@ export class MapContainer extends Component {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
+    foodBanks: [
+      { lat: 40.709751, lng: -73.962547 },
+      { lat: 40.715664, lng: -73.964882 },
+      { lat: 40.700668, lng: -74.013016 },
+    ],
   };
 
   onMarkerClick = (props, marker, e) =>
@@ -30,8 +35,15 @@ export class MapContainer extends Component {
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
         <Marker onClick={this.onMarkerClick} name={"current location"} />
-        {/* <Marker position={{ lat: 40.5956, lng: 74.0856 }} />
-        <Marker position={{ lat: 41.5956, lng: 74.0856 }} /> */}
+        {this.state.foodBanks.map((location) => (
+          <Marker
+            position={{
+              lat: location.lat,
+              lng: location.lng,
+            }}
+          />
+        ))}
+
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
