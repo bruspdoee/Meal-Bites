@@ -68,4 +68,24 @@ module.exports = {
 	authenticate: (req, res, next) => {
       req.user ? res.json(req.user) : res.status(204).send();
    },
+   newPosting: (req, res, next) => {
+      
+      // create user in db
+      db.Postings.create({
+         userName: req.body.userName,
+         donatedItem: req.body.donatedItem,
+         quantity: req.body.quantity,
+         comments: req.body.comments
+      })
+
+      // redirect to login
+      .then(posting =>  res.json(posting))
+      .catch(err => {
+            res.status(401);
+            next(err)
+      });
+   },
+
+
+
 };
