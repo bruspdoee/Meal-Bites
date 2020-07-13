@@ -11,8 +11,8 @@ export class MapContainer extends Component {
     foodBanks: [],
     userZipCode: "",
     center: {
-      lat: 40.691306,
-      lng: -73.942902,
+      lat: 40.5795,
+      lng: -74.1502,
     },
   };
 
@@ -49,6 +49,8 @@ export class MapContainer extends Component {
       });
       console.log(this.state.foodBanks);
 
+      console.log(res.data.results[0].geometry.location);
+
       this.setState({ center: res.data.results[0].geometry.location });
       console.log("center: " + JSON.stringify(this.state.center));
     });
@@ -67,10 +69,14 @@ export class MapContainer extends Component {
         <button onClick={this.handleSubmit}>Search</button>
 
         <Map
-          setCenter={{ lat: this.state.center.lat, lng: this.state.center.lng }}
+          zoom={11}
+          initialCenter={{
+            lat: this.state.center.lat,
+            lng: this.state.center.lng,
+          }}
           google={this.props.google}
         >
-          <Marker onClick={this.onMarkerClick} name={"current location"} />
+          <Marker onClick={this.onMarkerClick} name={"Current Location"} />
           {this.state.foodBanks.map((location) => (
             <Marker
               position={{
