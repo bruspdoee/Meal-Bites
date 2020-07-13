@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-import { GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
+import { GoogleApiWrapper, InfoWindow, Marker, Map } from "google-maps-react";
 import axios from "axios";
-import CurrentLocation from "../Map";
+// import Map from "../Map";
 
 export class MapContainer extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-    foodBanks: [
-    ],
+    foodBanks: [],
     userZipCode: "",
-    foundFoodBanks: [],
+    center: {
+      lat: 40.691306,
+      lng: -73.942902,
+    },
   };
 
   onMarkerClick = (props, marker, e) =>
@@ -32,22 +34,23 @@ export class MapContainer extends Component {
 
   handleInputChange = (event) => {
     this.setState({ userZipCode: event.target.value });
-    console.log(this.state.foundFoodBanks);
-   
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state.userZipCode);
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url =
       "https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyA-tikB3rpGVYDMjfuyXWPyMz7rTJRYLWg&query=food+bank+near+" +
       this.state.userZipCode;
 
-    axios.get(proxyurl + url)
-    .then((res) => {
-      this.setState({foodBanks: res.data.results.map((bank) => bank.geometry.location)})
+    axios.get(proxyurl + url).then((res) => {
+      this.setState({
+        foodBanks: res.data.results.map((bank) => bank.geometry.location),
+      });
       console.log(this.state.foodBanks);
+
+      this.setState({ center: res.data.results[0].geometry.location });
+      console.log("center: " + JSON.stringify(this.state.center));
     });
   };
 
@@ -63,7 +66,10 @@ export class MapContainer extends Component {
         ></input>
         <button onClick={this.handleSubmit}>Search</button>
 
-        <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
+        <Map
+          setCenter={{ lat: this.state.center.lat, lng: this.state.center.lng }}
+          google={this.props.google}
+        >
           <Marker onClick={this.onMarkerClick} name={"current location"} />
           {this.state.foodBanks.map((location) => (
             <Marker
@@ -83,7 +89,7 @@ export class MapContainer extends Component {
               <h4>{this.state.selectedPlace.name}</h4>
             </div>
           </InfoWindow>
-        </CurrentLocation>
+        </Map>
       </div>
     );
   }
