@@ -1,6 +1,7 @@
 import React from "react";
 import { postings as postingsAPI } from "../../utils/API";
-
+import { Redirect } from "react-router-dom";
+import User from "../User";
 
 class newPosting extends React.Component {
   constructor(props) {
@@ -26,14 +27,17 @@ class newPosting extends React.Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     alert("Thanks for donating");
-    postingsAPI.newPosting({
-      userName: this.state.userName,
-      donatedItem: this.state.donatedItem,
-      donatedItemCategory: this.state.donatedItemCategory,
-      quantity: this.state.quantity,
-      comments: this.state.comments,
-    })
-      .then((res) => console.log(res))
+    postingsAPI
+      .newPosting({
+        userName: this.state.userName,
+        donatedItem: this.state.donatedItem,
+        donatedItemCategory: this.state.donatedItemCategory,
+        quantity: this.state.quantity,
+        comments: this.state.comments,
+      })
+      .then((res) => {
+        return <Redirect to={{ pathname: "http://www.google.com" }} />;
+      })
       .catch((e) => console.log(e));
   };
 
@@ -42,7 +46,7 @@ class newPosting extends React.Component {
       <div>
         <h3>Welcome {this.state.userName}</h3>
         <form>
-        <label>Item to Donate</label>
+          <label>Item to Donate</label>
           <br />
           <input
             type="text"
@@ -52,8 +56,7 @@ class newPosting extends React.Component {
             onChange={this.handleInputChange}
           ></input>
           <br />
-          
-          
+
           <label>Category</label>
           <br />
           <select
@@ -62,7 +65,7 @@ class newPosting extends React.Component {
             value={this.state.donatedItemCategory}
             onChange={this.handleInputChange}
           >
-            <option >Please Select Below</option>
+            <option>Please Select Below</option>
             <option value="fruits">Fruit</option>
             <option value="cannedGoods">Canned Goods</option>
             <option value="householdSupplies">Household Supplies</option>
@@ -88,7 +91,11 @@ class newPosting extends React.Component {
             onChange={this.handleInputChange}
           ></input>
           <br />
-          <input type="submit" onClick={this.handleFormSubmit}></input>
+          <input
+            type="submit"
+            onClick={this.handleFormSubmit}
+            action="/api/post"
+          ></input>
         </form>
       </div>
     );

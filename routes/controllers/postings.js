@@ -19,4 +19,16 @@ module.exports = {
         next(err);
       });
   },
+
+  findDonations: (req, res, next) => {
+    console.log("this is req body:" + req.params.userName);
+    db.Postings.findAll({
+      where: {userName: req.params.userName},
+    })
+      .then((donations) => res.json(donations))
+      .catch((err) => {
+        res.status(401);
+        next(err);
+      });
+  },
 };
