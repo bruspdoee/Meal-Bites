@@ -65,7 +65,7 @@ class SignUpIn extends React.Component {
         .then((res) => {
           if (res.status === 200) {
             alert("Account Created!");
-            return <Redirect to="/" />;
+            return <Redirect to="/user" />;
           }
         })
         .catch((err) => {

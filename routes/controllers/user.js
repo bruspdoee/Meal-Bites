@@ -26,7 +26,8 @@ module.exports = {
 
       // request missing fields
 		} else {
-			var err = new Error('All fields required.');
+         console.log("LINE 28 got you");
+         var err = new Error('All fields required.');
 			err.status = 400;
 			return next(err);
 		}
