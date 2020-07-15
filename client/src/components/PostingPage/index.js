@@ -7,13 +7,17 @@ class newPosting extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "testuser",
+      userName: this.props.user.userName,
       donatedItem: "",
       donatedItemCategory: "",
       quantity: "",
       comments: "",
     };
   }
+
+componentDidMount() {
+  console.log(this.state.userName)
+}
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -94,7 +98,7 @@ class newPosting extends React.Component {
           <input
             type="submit"
             onClick={this.handleFormSubmit}
-            action="/api/post"
+            
           ></input>
         </form>
       </div>

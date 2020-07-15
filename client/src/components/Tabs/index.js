@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { Tabs, Tab } from "react-mdl";
 import { Redirect } from "react-router-dom";
 import { user as userAPI } from "../../utils/API";
 import validateUser from "../../utils/validateUser";
 
-class SignUpIn extends React.Component {
+class SignUpIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,12 +21,8 @@ class SignUpIn extends React.Component {
     };
   }
 
-  componentDidMount() {}
-
   handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(event.target);
-    console.log(event.target.value);
     this.setState({
       [name]: value,
     });
@@ -36,9 +32,12 @@ class SignUpIn extends React.Component {
   // on form submit if logging back in, need to authenticate
   handleFormSubmit = (event) => {
     event.preventDefault();
+    this.props.setLoading(true);
     if (!this.state.email || !this.state.password || !this.state.passwordConf) {
+      this.props.setLoading(false);
       alert("Please fill all required fields");
     } else if (this.state.password.trim() !== this.state.passwordConf.trim()) {
+      this.props.setLoading(false);
       alert("Passwords do not match");
     } else {
       alert(
@@ -64,11 +63,14 @@ class SignUpIn extends React.Component {
         })
         .then((res) => {
           if (res.status === 200) {
+            this.props.setLoading(false);
+            this.props.setUser(res.data);
             alert("Account Created!");
             return <Redirect to="/user" />;
           }
         })
         .catch((err) => {
+          this.props.setLoading(false);
           console.log(err);
         });
     }
@@ -78,7 +80,7 @@ class SignUpIn extends React.Component {
     event.preventDefault();
 
     if (this.state.userName && this.state.password) {
-      alert("Welcome " + this.state.userName);
+      this.props.setLoading(true);
 
       userAPI
         .login({
@@ -87,10 +89,15 @@ class SignUpIn extends React.Component {
         })
         .then((res) => {
           if (res.status === 200) {
+            alert("Welcome back " + this.state.userName)
             console.log(res.status);
+            this.props.setLoading(false);
+            this.props.setUser(res.data);
+            return <Redirect to="/user" />;
           }
         })
         .catch((err) => {
+          this.props.setLoading(false);
           console.log(err);
         });
     }
@@ -243,6 +250,7 @@ class SignUpIn extends React.Component {
               </form>
             </div>
           </div>
+          {validateUser(this.props.user) && <Redirect to="/user" />}
         </div>
       );
     } else {
@@ -276,6 +284,7 @@ class SignUpIn extends React.Component {
               </form>
             </div>
           </div>
+          {validateUser(this.props.user) && <Redirect to="/user" />}
         </div>
       );
     }
@@ -295,6 +304,7 @@ class SignUpIn extends React.Component {
         <section>
           <div>{this.toggleTab()}</div>
         </section>
+        {validateUser(this.props.user) && <Redirect to="/user" />}
       </div>
     );
   }

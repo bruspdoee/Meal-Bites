@@ -6,7 +6,7 @@ class User extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: "jbay",
+      userName: this.props.user.userName,
       donationItemHistory: [],
       donationQuantityHistory: [],
       donationDate: [],
@@ -50,7 +50,7 @@ class User extends React.Component {
   render() {
     return (
       <div>
-        <h2> Recent Donations</h2>
+        <h3>{this.state.userName}, thanks for your donations!</h3>
         <p>Item</p>
         <p>Quantity</p>
         <p>Date of Donation</p>
