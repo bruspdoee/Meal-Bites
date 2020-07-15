@@ -1,1 +1,1 @@
-export default user => user.email ? true : false;
+export default user => user.userName ? true : false;

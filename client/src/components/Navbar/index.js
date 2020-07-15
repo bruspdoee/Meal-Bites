@@ -1,9 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { user as userAPI } from "../../utils/API";
 // import "./style.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
-function Navbar() {
+const Navbar = (props) => {
+  const signout = () => {
+    userAPI
+      .signout()
+      .then(() => props.setUser({}))
+      .catch((e) => {
+        throw e;
+      });
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div>
@@ -29,7 +39,7 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              Sign Up/Sign In
+              Sign Up | Log In
             </Link>
           </li>
           <li className="nav-item">
@@ -44,7 +54,7 @@ function Navbar() {
               About
             </Link>
           </li>
-          <li className="nav-item">
+          {props.user.id ? (
             <Link
               to="/posting"
               className={
@@ -55,11 +65,30 @@ function Navbar() {
             >
               Posting
             </Link>
+          ) : (
+            <></>
+          )}
+          <li className="nav-item">
+       
+            {props.user.id ? (
+              <Link
+                onClick={signout}
+                className={
+                  window.location.pathname === "/"
+                    ? "nav-link active"
+                    : "nav-link"
+                }
+              >
+                Sign Out
+              </Link>
+            ) : (
+              <></>
+            )}
           </li>
         </ul>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;
