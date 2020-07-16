@@ -84,6 +84,20 @@ function App() {
           )}
           {...{ user, setUser, setLoading, setAlertInfo }}
         />
+        <Route
+          exact
+          path="/user"
+          render={(props) => (
+            <User
+              {...props}
+              user={user}
+              setUser={setUser}
+              setLoading={setLoading}
+              setAlertInfo={setAlertInfo}
+            />
+          )}
+          {...{ user, setUser, setLoading, setAlertInfo }}
+        />
         <ProtectedRoute
           exact
           path="/user"

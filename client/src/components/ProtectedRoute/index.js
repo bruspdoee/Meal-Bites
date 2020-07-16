@@ -9,10 +9,10 @@ const ProtectedRoute = ({ Component, loading, user }) => {
           render={ () => {
              const loggedIn = validateUser(user)
             return loggedIn
-              ? <Component {...{user}} />
+              ? <Redirect to="/user" />
               : loading === true 
                   ? <></>
-                  : <Redirect to="/user" />
+                  : <Redirect to="/" />
           }}
       />
    )
