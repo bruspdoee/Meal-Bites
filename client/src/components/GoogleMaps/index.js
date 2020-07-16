@@ -9,6 +9,7 @@ export class MapContainer extends Component {
     activeMarker: {},
     selectedPlace: {},
     foodBanks: [],
+    foodBankNames: [],
     userZipCode: "",
     center: {
       lat: 40.5795,
@@ -16,12 +17,15 @@ export class MapContainer extends Component {
     },
   };
 
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker, e) => {
+    console.log(props);
+    console.log(marker);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true,
     });
+  };
 
   onClose = (props) => {
     if (this.state.showingInfoWindow) {
@@ -44,14 +48,20 @@ export class MapContainer extends Component {
       this.state.userZipCode;
 
     axios.get(proxyurl + url).then((res) => {
+      console.log(res.data);
       this.setState({
-        foodBanks: res.data.results.map((bank) => bank.geometry.location),
+        foodBanks: res.data.results.map((bank) => {
+          return {
+            lat: bank.geometry.location.lat,
+            lng: bank.geometry.location.lng,
+            name: bank.name,
+            address: bank.formatted_address,
+          };
+        }),
       });
-      console.log(this.state.foodBanks);
-
-      console.log(res.data.results[0].geometry.location);
 
       this.setState({ center: res.data.results[0].geometry.location });
+      console.log(this.state.foodBanks);
       console.log("center: " + JSON.stringify(this.state.center));
     });
   };
@@ -77,12 +87,16 @@ export class MapContainer extends Component {
           google={this.props.google}
         >
           <Marker onClick={this.onMarkerClick} name={"Current Location"} />
+
           {this.state.foodBanks.map((location) => (
             <Marker
               position={{
                 lat: location.lat,
                 lng: location.lng,
               }}
+              name={location.name}
+              address={location.address}
+              onClick={this.onMarkerClick}
             />
           ))}
 
@@ -92,7 +106,8 @@ export class MapContainer extends Component {
             onClose={this.onClose}
           >
             <div>
-              <h4>{this.state.selectedPlace.name}</h4>
+              <h6>{this.state.selectedPlace.name}</h6>
+              <p>{this.state.selectedPlace.address}</p>
             </div>
           </InfoWindow>
         </Map>
