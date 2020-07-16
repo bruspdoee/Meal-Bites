@@ -2,14 +2,11 @@ import React from "react";
 import { postings as postingsAPI } from "../../utils/API";
 // import { render } from "react-dom";
 
-class User extends React.Component {
+class Inventory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userName: this.props.user.userName,
-      donationItemHistory: [],
-      donationQuantityHistory: [],
-      donationDate: [],
       donatedHistory: [],
     };
   }
@@ -17,27 +14,14 @@ class User extends React.Component {
   componentDidMount() {
     console.log(this.state.userName + " is mounted");
     postingsAPI
-      .findDonations({
-        userName: this.state.userName,
-      })
+      .findAll()
       .then((res) => {
         console.log(res);
-        this.setState({
-          donationItemHistory: res.data.map(
-            (donationObj) => donationObj.donatedItem
-          ),
-        });
-        this.setState({
-          donationQuantityHistory: res.data.map(
-            (donateObj) => donateObj.quantity
-          ),
-        });
-        this.setState({
-          donationDate: res.data.map((timeObj) => timeObj.createdAt),
-        });
+
         this.setState({
           donatedHistory: res.data.map((donation) => {
             return {
+              userName: donation.userName,
               donatedItem: donation.donatedItem,
               donatedItemCategory: donation.donatedItemCategory,
               quantity: donation.quantity,
@@ -54,13 +38,13 @@ class User extends React.Component {
   render() {
     return (
       <div>
-        <h3>{this.state.userName}, thanks for your donations!</h3>
+        <h3>Watch people donating live!</h3>
 
         {this.state.donatedHistory.map((donatedItem) => (
           <div>
             <p>
-              {donatedItem.quantity} {donatedItem.donatedItem} on{" "}
-              {donatedItem.date}
+              {donatedItem.userName} donated {donatedItem.quantity}{" "}
+              {donatedItem.donatedItem} on {donatedItem.date}
             </p>
           </div>
         ))}
@@ -69,4 +53,4 @@ class User extends React.Component {
   }
 }
 
-export default User;
+export default Inventory;

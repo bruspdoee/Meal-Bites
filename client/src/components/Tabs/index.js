@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Tabs, Tab } from "react-mdl";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import { user as userAPI } from "../../utils/API";
 import validateUser from "../../utils/validateUser";
 
@@ -66,7 +66,7 @@ class SignUpIn extends Component {
             this.props.setLoading(false);
             this.props.setUser(res.data);
             alert("Account Created!");
-            return <Redirect to="/user" />;
+            this.props.history.push("/user");
           }
         })
         .catch((err) => {
@@ -89,11 +89,12 @@ class SignUpIn extends Component {
         })
         .then((res) => {
           if (res.status === 200) {
-            alert("Welcome back " + this.state.userName)
+            alert("Welcome back " + this.state.userName);
             console.log(res.status);
+            console.log(res.data);
             this.props.setLoading(false);
             this.props.setUser(res.data);
-            return <Redirect to="/user" />;
+            this.props.history.push("/user");
           }
         })
         .catch((err) => {
@@ -310,4 +311,4 @@ class SignUpIn extends Component {
   }
 }
 
-export default SignUpIn;
+export default withRouter(SignUpIn);

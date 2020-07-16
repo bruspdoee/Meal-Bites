@@ -19,8 +19,8 @@ module.exports = {
                console.log(`login: `, req.user);
                
                // save user to session to match on login
-               req.session.user = req.userName;
-					return res.json(req.userName);
+               req.session.user = req.user;
+					return res.json(req.user);
 				}
          // });
 

@@ -7,14 +7,17 @@ const ProtectedRoute = ({ Component, loading, user }) => {
    return(
       <Route
           render={ () => {
-            return validateUser(user)
+             const loggedIn = validateUser(user)
+            return loggedIn
               ? <Component {...{user}} />
               : loading === true 
                   ? <></>
-                  : <Redirect to="/signup" />
+                  : <Redirect to="/user" />
           }}
       />
    )
 }
 
 export default ProtectedRoute;
+
+// ? <Component {...{user}} />

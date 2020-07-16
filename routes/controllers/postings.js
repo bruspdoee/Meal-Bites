@@ -23,8 +23,17 @@ module.exports = {
   findDonations: (req, res, next) => {
     console.log("this is req body:" + req.params.userName);
     db.Postings.findAll({
-      where: {userName: req.params.userName},
+      where: { userName: req.params.userName },
+      order: [["createdAt", "DESC"]]
     })
+      .then((donations) => res.json(donations))
+      .catch((err) => {
+        res.status(401);
+        next(err);
+      });
+  },
+  findAll: (req, res, next) => {
+    db.Postings.findAll({order: [["createdAt", "DESC"]]} )
       .then((donations) => res.json(donations))
       .catch((err) => {
         res.status(401);

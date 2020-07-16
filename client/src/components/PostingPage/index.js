@@ -2,6 +2,7 @@ import React from "react";
 import { postings as postingsAPI } from "../../utils/API";
 import { Redirect } from "react-router-dom";
 import User from "../User";
+import { withRouter } from "react-router-dom";
 
 class newPosting extends React.Component {
   constructor(props) {
@@ -15,9 +16,9 @@ class newPosting extends React.Component {
     };
   }
 
-componentDidMount() {
-  console.log(this.state.userName)
-}
+  componentDidMount() {
+    console.log(this.state.userName);
+  }
 
   handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -40,7 +41,7 @@ componentDidMount() {
         comments: this.state.comments,
       })
       .then((res) => {
-        return <Redirect to={{ pathname: "http://www.google.com" }} />;
+        this.props.history.push("/user");
       })
       .catch((e) => console.log(e));
   };
@@ -95,15 +96,11 @@ componentDidMount() {
             onChange={this.handleInputChange}
           ></input>
           <br />
-          <input
-            type="submit"
-            onClick={this.handleFormSubmit}
-            
-          ></input>
+          <input type="submit" onClick={this.handleFormSubmit}></input>
         </form>
       </div>
     );
   }
 }
 
-export default newPosting;
+export default withRouter(newPosting);
