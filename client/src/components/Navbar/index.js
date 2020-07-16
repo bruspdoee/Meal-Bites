@@ -14,6 +14,12 @@ const Navbar = (props) => {
       });
   };
 
+  
+  console.group("navbar");
+  console.info(`🌎 page rendered at path: '${props.match.path}'`, "\n");
+  console.info("🤖 user", props.user);
+  console.groupEnd();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div>
@@ -39,7 +45,7 @@ const Navbar = (props) => {
                   : "nav-link"
               }
             >
-              Sign Up | Log In
+              {props.user.id ? <p>User Profile</p> : <p>Sign Up | Log In</p>}
             </Link>
           </li>
           <li className="nav-item">
@@ -54,6 +60,19 @@ const Navbar = (props) => {
               About
             </Link>
           </li>
+          <li className="nav-item">
+            <Link
+              to="/inventory"
+              className={
+                window.location.pathname === "/inventory"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
+              Watch the Action
+            </Link>
+          </li>
+
           {props.user.id ? (
             <Link
               to="/posting"
@@ -69,7 +88,6 @@ const Navbar = (props) => {
             <></>
           )}
           <li className="nav-item">
-       
             {props.user.id ? (
               <Link
                 onClick={signout}

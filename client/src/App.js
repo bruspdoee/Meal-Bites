@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import User from "./components/User";
 import ProtectedRoute from "./components/ProtectedRoute";
 import SignUpIn from "./components/Tabs";
+import Inventory from "./components/Inventory";
 import { user as userAPI } from "./utils/API";
 
 function App() {
@@ -40,6 +41,20 @@ function App() {
           )}
         />
         <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/inventory"
+          render={(props) => (
+            <Inventory
+              {...props}
+              user={user}
+              setUser={setUser}
+              setLoading={setLoading}
+              setAlertInfo={setAlertInfo}
+            />
+          )}
+          {...{ user, setUser, setLoading, setAlertInfo }}
+        />
         <Route
           exact
           path="/signup"
@@ -72,7 +87,8 @@ function App() {
         <ProtectedRoute
           exact
           path="/user"
-          {...{ user, loading, Component: User }}
+          {...{ user, setLoading, Component: User }}
+          
         />
         <Footer />
       </div>
