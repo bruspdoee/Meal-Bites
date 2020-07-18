@@ -51,11 +51,23 @@ export class MapContainer extends Component {
       console.log(res.data);
       this.setState({
         foodBanks: res.data.results.map((bank) => {
+          const comments = [
+            "jbay, bpalaj, and others donated 83 items here",
+            "mmastro donated 3 items here",
+            "rerlih donated 18 items here",
+            "no one's donated here, be the first!",
+            "mgoodman donated 95 items here",
+            "mgoodman and bpalaj donated 14 items here",
+          ];
+          const random = Math.floor(Math.random() * comments.length);
+          console.log(Math.floor(Math.random() * comments.length));
+
           return {
             lat: bank.geometry.location.lat,
             lng: bank.geometry.location.lng,
             name: bank.name,
             address: bank.formatted_address,
+            comments: comments[random],
           };
         }),
       });
@@ -96,6 +108,7 @@ export class MapContainer extends Component {
               }}
               name={location.name}
               address={location.address}
+              comments={location.comments}
               onClick={this.onMarkerClick}
             />
           ))}
@@ -108,6 +121,7 @@ export class MapContainer extends Component {
             <div>
               <h6>{this.state.selectedPlace.name}</h6>
               <p>{this.state.selectedPlace.address}</p>
+              <p>{this.state.selectedPlace.comments}</p>
             </div>
           </InfoWindow>
         </Map>

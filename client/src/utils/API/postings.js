@@ -8,6 +8,10 @@ export default {
   findDonations: function (posting) {
     return axios.get("/api/post/getdonations/" + posting.userName)
   },
+  findTotalDonationsNumber: function (posting) {
+    return axios.get("/api/post/getdonationsnumber/" + posting.userName)
+  },
+
   findAll: function (posting) {
     return axios.get("/api/post/getall/", posting)
   }

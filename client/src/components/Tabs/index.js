@@ -40,18 +40,6 @@ class SignUpIn extends Component {
       this.props.setLoading(false);
       alert("Passwords do not match");
     } else {
-      alert(
-        "Welcome " +
-          this.state.firstName +
-          " " +
-          this.state.lastName +
-          ".  " +
-          "Your username is " +
-          this.state.userName +
-          " and your password is " +
-          this.state.password
-      );
-
       userAPI
         .signup({
           firstName: this.state.firstName.trim(),
@@ -89,9 +77,6 @@ class SignUpIn extends Component {
         })
         .then((res) => {
           if (res.status === 200) {
-            alert("Welcome back " + this.state.userName);
-            console.log(res.status);
-            console.log(res.data);
             this.props.setLoading(false);
             this.props.setUser(res.data);
             this.props.history.push("/user");
@@ -184,7 +169,12 @@ class SignUpIn extends Component {
                 <br />
                 <label> State:</label>
                 <br />
-                <select id="states" value={this.state.state} name="state">
+                <select
+                  id="states"
+                  value={this.state.state}
+                  name="state"
+                  onChange={this.handleInputChange}
+                >
                   <option value="AL">AL</option>
                   <option value="AK">AK</option>
                   <option value="AZ">AZ</option>
