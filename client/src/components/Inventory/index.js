@@ -20,12 +20,20 @@ class Inventory extends React.Component {
 
         this.setState({
           donatedHistory: res.data.map((donation) => {
+            const donationTime =
+              donation.createdAt[6] +
+              "/" +
+              donation.createdAt[8] +
+              donation.createdAt[9] +
+              "/2020";
+
             return {
               userName: donation.userName,
               donatedItem: donation.donatedItem,
               donatedItemCategory: donation.donatedItemCategory,
               quantity: donation.quantity,
-              date: donation.createdAt,
+              date: donationTime,
+              comments: donation.comments
             };
           }),
         });
@@ -46,6 +54,7 @@ class Inventory extends React.Component {
               {donatedItem.userName} donated {donatedItem.quantity}{" "}
               {donatedItem.donatedItem} on {donatedItem.date}
             </p>
+            <p> ----- {donatedItem.comments} -----</p>
           </div>
         ))}
       </div>

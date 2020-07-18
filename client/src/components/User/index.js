@@ -7,10 +7,8 @@ class User extends React.Component {
     super(props);
     this.state = {
       userName: this.props.user.userName,
-      donationItemHistory: [],
-      donationQuantityHistory: [],
-      donationDate: [],
       donatedHistory: [],
+      donatedHistoryNumbers: [],
     };
   }
 
@@ -21,27 +19,20 @@ class User extends React.Component {
         userName: this.state.userName,
       })
       .then((res) => {
-        console.log(res);
-        this.setState({
-          donationItemHistory: res.data.map(
-            (donationObj) => donationObj.donatedItem
-          ),
-        });
-        this.setState({
-          donationQuantityHistory: res.data.map(
-            (donateObj) => donateObj.quantity
-          ),
-        });
-        this.setState({
-          donationDate: res.data.map((timeObj) => timeObj.createdAt),
-        });
         this.setState({
           donatedHistory: res.data.map((donation) => {
+            const donationTime =
+              donation.createdAt[6] +
+              "/" +
+              donation.createdAt[8] +
+              donation.createdAt[9] +
+              "/2020";
+
             return {
               donatedItem: donation.donatedItem,
               donatedItemCategory: donation.donatedItemCategory,
               quantity: donation.quantity,
-              date: donation.createdAt,
+              date: donationTime,
             };
           }),
         });
@@ -49,13 +40,47 @@ class User extends React.Component {
         console.log(this.state.donatedHistory);
       })
       .catch((e) => console.log(e));
+
+    postingsAPI
+      .findTotalDonationsNumber({
+        userName: this.state.userName,
+      })
+      .then((resp) => {
+        console.log(resp.data);
+        this.setState({
+          donatedHistoryNumbers: resp.data.map((response) => {
+            return {
+              [response.donatedItemCategory.charAt(0).toUpperCase() + response.donatedItemCategory.slice(1)]: response.total,
+            };
+          }),
+        });
+
+        console.log(this.state.donatedHistoryNumbers);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   render() {
     return (
       <div>
         <h3>{this.state.userName}, thanks for your donations!</h3>
+        <h7>Member since 2020</h7>
+        <br />
+        <br />
+        <h4>## Number of items donated ##</h4>
+        {this.state.donatedHistoryNumbers.map((category) => (
+          <div>
+            <p>{Object.keys(category)}: {Object.values(category)}</p>
+          </div>
+        ))}
 
+        <br />
+        <br />
+
+        <h4>## Itemized History ##</h4>
         {this.state.donatedHistory.map((donatedItem) => (
           <div>
             <p>

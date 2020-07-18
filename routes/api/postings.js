@@ -7,6 +7,8 @@ router.route("/").post(postingsFunctions.newPosting);
 
 router.route("/getdonations/:userName").get(postingsFunctions.findDonations);
 
+router.route("/getdonationsnumber/:userName").get(postingsFunctions.findTotalDonationsNumber);
+
 router.route("/getall").get(postingsFunctions.findAll);
 
 
