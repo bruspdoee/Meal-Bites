@@ -65,22 +65,17 @@ class User extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>{this.state.userName}, thanks for your donations!</h3>
-        <h7>Member since 2020</h7>
-        <br />
-        <br />
-        <h4>## Number of items donated ##</h4>
+      <div class="user-profile-container fixed-width">
+        <h3 class="h2 border-accent">{this.state.userName}, thanks for your donations!</h3>
+        <h5>Member since 2020</h5>
+        <h4 class="h3">Number of items donated</h4>
         {this.state.donatedHistoryNumbers.map((category) => (
           <div>
-            <p>{Object.keys(category)}: {Object.values(category)}</p>
+            <p class="donated-items">{Object.keys(category)}: {Object.values(category)}</p>
           </div>
         ))}
 
-        <br />
-        <br />
-
-        <h4>## Itemized History ##</h4>
+        <h4>Itemized History</h4>
         {this.state.donatedHistory.map((donatedItem) => (
           <div>
             <p>

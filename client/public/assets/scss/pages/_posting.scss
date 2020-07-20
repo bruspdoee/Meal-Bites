@@ -1,0 +1,28 @@
+.posting-page {
+    .h2 {
+        text-align: center;
+    }
+}
+
+.posting-container {
+    @include margin(y, $large);
+    @include margin(x, auto);
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 20%;
+
+    > *:not(:last-child) {
+        @include margin(bottom, $default);
+    }
+
+    label {
+        align-self: center;
+    }
+
+    .button {
+        @include margin(x, auto);
+    }
+}

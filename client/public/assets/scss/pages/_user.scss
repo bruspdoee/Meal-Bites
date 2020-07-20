@@ -1,0 +1,7 @@
+.user-profile-container {
+    @include margin(y, $large);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: $font-secondary;
+}
