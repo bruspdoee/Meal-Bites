@@ -1,0 +1,28 @@
+.signup-content {
+    font-family: $font-secondary;
+    max-width: 600px;
+
+    .h2 {
+        text-align: center;
+    }
+
+    .sign-up-fields {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        > *{
+            @include margin(y, $default);
+            @include margin(x, auto);
+        }
+    }
+
+    .button {
+        @include margin(x, auto);
+        @include margin(y, $large);
+        display: block;
+    }
+
+    .input {
+        max-width: 50%;
+    }
+}

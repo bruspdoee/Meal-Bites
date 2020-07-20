@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap');
+
+$font-primary: 'Rowdies', cursive;
+$font-secondary: 'Open Sans', sans-serif;
+
+.h1 {
+    font-family: $font-primary;
+    font-size: 2em;
+}
+
+.h2 {
+    font-family: $font-secondary;
+    font-size: 2em;
+}

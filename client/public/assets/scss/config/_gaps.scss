@@ -1,0 +1,12 @@
+$gap-base: 20px;
+$gap-xsmall: 1/4;
+$gap-small: 1/2;
+$gap-default: 1;
+$gap-large: 2;
+$gap-xlarge: 4;
+
+$xsmall: ($gap-xsmall * $gap-base);
+$small: ($gap-small * $gap-base);
+$default: ($gap-default * $gap-base);
+$large: ($gap-large * $gap-base);
+$xlarge: ($gap-xlarge * $gap-base);

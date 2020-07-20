@@ -1,0 +1,29 @@
+.donate-content {
+    .h2 {
+        text-align: center;
+    }
+}
+
+.donate-grid {
+    @include margin(x, auto);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+
+    .donate-container {
+        @include margin(all, $large);
+    }
+
+    .donate-item {
+        font-family: $font-secondary;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .donate-comment {
+        font-family: $font-secondary;
+        font-size: 14px;
+    }
+}

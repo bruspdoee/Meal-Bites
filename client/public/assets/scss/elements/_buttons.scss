@@ -1,0 +1,23 @@
+.button {
+    text-align: center;
+
+    &.primary {
+        @include padding(y, $default);
+        @include padding(x, $xlarge);
+        background-color: $color-primary;
+        border: none;
+        border-radius: 40px;
+        color: $color-tertiary;
+        font-family: $font-secondary;
+        max-width: 50%;
+        text-decoration: none;
+
+        &:hover {
+            background-color: $color-primary-hover;
+        }
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

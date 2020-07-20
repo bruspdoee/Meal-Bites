@@ -49,7 +49,7 @@ class newPosting extends React.Component {
   render() {
     return (
       <div>
-        <h3>Welcome {this.state.userName}</h3>
+        <h3 class="h2">Welcome {this.state.userName}</h3>
         <form>
           <label>Item to Donate</label>
           <br />

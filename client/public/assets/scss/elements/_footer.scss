@@ -1,0 +1,88 @@
+.main-footer {
+    background-color: $color-tertiary;
+    border-top: 3px solid $color-quinary;
+}
+
+.footer-content {
+    @include margin(top, $small);
+}
+
+.top-footer {
+    border-bottom: 5px solid $color-primary;
+
+    .fixed-width {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.footer-info {
+    @include margin(bottom, $default);
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+
+    > *:first-child:not(.contact-info) {
+        grid-row-start: 1;
+    }
+
+    > *:last-child:not(.h1) {
+        grid-row-start: 2;
+    }
+}
+
+.contact-info {
+    font-family: $font-secondary;
+
+    .contact-title {
+        @include margin(bottom, $large);
+    }
+
+    .contact-text {
+        @include margin(bottom, $small);
+    }
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer-nav-list {
+    display: flex;
+    flex-direction: column;
+    font-family: $font-secondary;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.footer-nav-item {
+    @include margin(bottom, $small);
+
+    &:hover {
+        color: $color-primary;
+    }
+}
+
+.bottom-footer {
+    @include padding(x, $default);
+    @include padding(y, $small);
+    align-items: center;
+    background-color: $color-quinary;
+    color: $color-tertiary;
+    display: flex;
+    flex-direction: row;
+    font-family: $font-secondary;
+    justify-content: space-between;
+
+    .social-link {
+        font-size: 20px;
+
+        &:not(:last-child) {
+            @include margin(right, $default);
+        }
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+}

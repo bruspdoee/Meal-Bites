@@ -1,0 +1,74 @@
+/* -----------
+    USAGE
+@include padding(y, $gap-medium);
+------------*/
+
+@mixin padding($position, $amount) {
+    @if $position == 'top' {
+        padding-top: $amount;
+    }
+    
+    @if $position == 'right' {
+        padding-right: $amount;
+    }
+    
+    @if $position == 'bottom' {
+        padding-bottom: $amount;
+    }
+
+    @if $position == 'left' {
+        padding-left: $amount;
+    }
+
+    @if $position == 'x' {
+        padding-left: $amount;
+        padding-right: $amount;
+    }
+
+    @if $position == 'y' {
+        padding-top: $amount;
+        padding-bottom: $amount;
+    }
+
+    @if $position == 'all' {
+        padding: $amount;
+    }
+
+}
+
+/* -----------
+    USAGE
+@include margin(y, $gap-medium);
+------------*/
+
+@mixin margin($position, $amount) {
+    @if $position == 'top' {
+        margin-top: $amount;
+    }
+    
+    @if $position == 'right' {
+        margin-right: $amount;
+    }
+    
+    @if $position == 'bottom' {
+        margin-bottom: $amount;
+    }
+
+    @if $position == 'left' {
+        margin-left: $amount;
+    }
+
+    @if $position == 'x' {
+        margin-left: $amount;
+        margin-right: $amount;
+    }
+
+    @if $position == 'y' {
+        margin-top: $amount;
+        margin-bottom: $amount;
+    }
+
+    @if $position == 'all' {
+        margin: $amount;
+    }
+}
