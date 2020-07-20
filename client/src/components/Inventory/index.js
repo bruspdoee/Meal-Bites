@@ -45,16 +45,18 @@ class Inventory extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>Watch people donating live!</h3>
+      <div class="donate-content fixed-width">
+        <h3 class="h2">Watch people donating live!</h3>
 
         {this.state.donatedHistory.map((donatedItem) => (
-          <div>
-            <p>
-              {donatedItem.userName} donated {donatedItem.quantity}{" "}
-              {donatedItem.donatedItem} on {donatedItem.date}
-            </p>
-            <p> ----- {donatedItem.comments} -----</p>
+          <div class="donate-grid">
+            <div class="donate-container">
+              <p class="donate-item">
+                {donatedItem.userName} donated {donatedItem.quantity}{" "}
+                {donatedItem.donatedItem} on {donatedItem.date}
+              </p>
+              <p class="donate-comment border-accent"> {donatedItem.comments} </p>
+            </div>
           </div>
         ))}
       </div>

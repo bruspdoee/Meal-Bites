@@ -1,0 +1,94 @@
+@keyframes background {
+    from {background-position: 0% 0%;}
+    to {background-position: 100% 0%;}
+}
+
+.home-content {
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-name: background;
+    animation-timing-function: linear;
+    background-image: url('../../assets/img/fruit-bg-trans.png');
+    background-size: cover;
+    background-position: center center;
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+    position: fixed; 
+    top: 0; 
+    z-index: -1;      
+}
+
+.home-hero {
+    display: flex;
+    flex-direction: row;
+}
+
+.home-hero-content {
+    @include margin(y, $large);
+    @include padding(all, $large);
+    align-items: flex-start;
+    background-color: $color-tertiary;
+    display: flex;
+    flex-direction: column;
+    max-width: 35%;
+
+    .button {
+        @include margin(y, $large);
+    }
+}
+
+.home-hero-tree {
+    @include margin(x, auto);
+    @include margin(top, $large);
+    background-image: url('../../assets/img/tree-without-knob.svg');
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 400px;
+    height: 400px;
+}
+
+.home-map {
+    width: 50% !important;
+    position: absolute !important;
+}
+
+.map-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    text-align: center;
+
+    .h2 {
+        @include margin(top, $xlarge);
+        @include margin(x, $xlarge);
+        grid-column-start: 2;
+        grid-row-start: 1;
+    }
+
+    .userZip {
+        @include margin(top, $xlarge);
+        @include margin(x, auto);
+        border-width: 5px;
+        grid-column-start: 2;
+        grid-row-start: 2;
+        max-height: 20%;
+    }
+
+    .button {
+        @include margin(y, $large);
+        @include margin(x, auto);
+        grid-column-start: 2;
+        grid-row-start: 3;
+        max-height: 30%;
+    }
+}
+
+.map-container {
+    @include margin(top, $large);
+    @include padding(bottom, $large);
+    background-color: $color-tertiary;
+    position: relative;
+    height: 550px;
+}

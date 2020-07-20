@@ -80,17 +80,21 @@ export class MapContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div class="map-content">
+        <h2 class="h2">Find a place to donate near you!</h2>
         <input
-          className="userZip"
+          className="userZip input primary"
           type="text"
           placeholder="Enter Zipcode"
           name="userZip"
           onChange={this.handleInputChange}
         ></input>
-        <button onClick={this.handleSubmit}>Search</button>
+        <button 
+        className = "button primary"
+        onClick={this.handleSubmit}>Search</button>
 
         <Map
+          className="home-map"
           zoom={11}
           initialCenter={{
             lat: this.state.center.lat,

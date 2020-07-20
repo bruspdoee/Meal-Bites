@@ -4,11 +4,15 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
+    "@types/googlemaps": "^3.39.9",
+    "@types/markerclustererplus": "^2.1.33",
+    "@types/react": "^16.9.43",
+    "ajv": "^6.12.3",
     "axios": "^0.19.2",
-    "react": "^16.6.3",
+    "react": "^16.13.1",
     "react-dom": "^16.6.3",
     "react-google-maps": "^9.4.5",
-    "react-scripts": "^2.1.1",
+    "react-scripts": "^2.1.8",
     "sequelize": "^6.3.3"
   },
   "scripts": {

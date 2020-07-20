@@ -1,0 +1,5 @@
+.fixed-width {
+    @include padding(x, $default); 
+    margin: 0 auto;
+    max-width: 1200px;
+}
