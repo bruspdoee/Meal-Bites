@@ -41,6 +41,7 @@
 .home-hero-tree {
     @include margin(x, auto);
     @include margin(top, $large);
+    padding-bottom: -100px;
     background-image: url('../../assets/img/tree-without-knob.svg');
     background-position: bottom right;
     background-repeat: no-repeat;
@@ -81,7 +82,7 @@
         @include margin(x, auto);
         grid-column-start: 2;
         grid-row-start: 3;
-        max-height: 30%;
+        max-height: 40%;
     }
 }
 

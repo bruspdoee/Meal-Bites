@@ -1,0 +1,14 @@
+.about-content {
+    @include margin(y, $xlarge);
+    font-family: $font-secondary;
+    
+    p {
+        font-size: 18px;
+    }
+
+    .about-image {
+        @include margin(x, auto);
+        @include margin(bottom, $small);
+        display: block;
+    }
+}

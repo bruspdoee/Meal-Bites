@@ -48,26 +48,25 @@ class newPosting extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3 class="h2">Welcome {this.state.userName}</h3>
-        <form>
+      <div class="posting-page">
+        <h3 class="h2 fixed-width">Welcome {this.state.userName}</h3>
+        <form class="posting-container">
           <label>Item to Donate</label>
-          <br />
           <input
             type="text"
             id="donatedItem"
             name="donatedItem"
             value={this.state.donatedItem}
+            className="input secondary"
             onChange={this.handleInputChange}
           ></input>
-          <br />
 
           <label>Category</label>
-          <br />
           <select
             id="donatedItemCategory"
             name="donatedItemCategory"
             value={this.state.donatedItemCategory}
+            className="input secondary"
             onChange={this.handleInputChange}
           >
             <option>Please Select Below</option>
@@ -75,28 +74,25 @@ class newPosting extends React.Component {
             <option value="cannedGoods">Canned Goods</option>
             <option value="householdSupplies">Household Supplies</option>
           </select>
-          <br />
           <label>Quantity to Donate</label>
-          <br />
           <input
             type="text"
             id="quantity"
             name="quantity"
             value={this.state.quantity}
+            className="input secondary"
             onChange={this.handleInputChange}
           ></input>
-          <br />
           <label>Comments</label>
-          <br />
           <input
             type="text"
             id="comments"
             name="comments"
             value={this.state.comments}
+            className="input secondary"
             onChange={this.handleInputChange}
           ></input>
-          <br />
-          <input type="submit" onClick={this.handleFormSubmit}></input>
+          <input className="button primary" type="submit" onClick={this.handleFormSubmit}></input>
         </form>
       </div>
     );
