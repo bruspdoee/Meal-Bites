@@ -7,6 +7,8 @@ class User extends React.Component {
     super(props);
     this.state = {
       userName: this.props.user.userName,
+      donor: this.props.user.donor,
+      foodbanker: this.props.user.foodbanker,
       donatedHistory: [],
       donatedHistoryNumbers: [],
     };
@@ -50,7 +52,8 @@ class User extends React.Component {
         this.setState({
           donatedHistoryNumbers: resp.data.map((response) => {
             return {
-              [response.donatedItemCategory.charAt(0).toUpperCase() + response.donatedItemCategory.slice(1)]: response.total,
+              [response.donatedItemCategory.charAt(0).toUpperCase() +
+              response.donatedItemCategory.slice(1)]: response.total,
             };
           }),
         });
@@ -64,18 +67,41 @@ class User extends React.Component {
   }
 
   render() {
+    if (this.state.donor === "Yes") {
+      return (
+        <div class="user-profile-container fixed-width">
+          <h3 class="h2 border-accent">
+            {this.state.userName}, thanks for your donations!
+          </h3>
+          <h5>Member since 2020</h5>
+          <h4 class="h3">Number of items donated</h4>
+          {this.state.donatedHistoryNumbers.map((category) => (
+            <div>
+              <p class="donated-items">
+                {Object.keys(category)}: {Object.values(category)}
+              </p>
+            </div>
+          ))}
+
+          <h4>Itemized History</h4>
+          {this.state.donatedHistory.map((donatedItem) => (
+            <div>
+              <p>
+                {donatedItem.quantity} {donatedItem.donatedItem} on{" "}
+                {donatedItem.date}
+              </p>
+            </div>
+          ))}
+        </div>
+      );
+    } else if (this.state.foodbanker === "Yes");
     return (
       <div class="user-profile-container fixed-width">
-        <h3 class="h2 border-accent">{this.state.userName}, thanks for your donations!</h3>
-        <h5>Member since 2020</h5>
-        <h4 class="h3">Number of items donated</h4>
-        {this.state.donatedHistoryNumbers.map((category) => (
-          <div>
-            <p class="donated-items">{Object.keys(category)}: {Object.values(category)}</p>
-          </div>
-        ))}
-
-        <h4>Itemized History</h4>
+        <h3 class="h2 border-accent">
+          Welcome Back {this.state.userName}, thank you for being our partner!
+        </h3>
+        <h5>Partners since 2020</h5>
+        <h4>Recently Claimed Items </h4>
         {this.state.donatedHistory.map((donatedItem) => (
           <div>
             <p>

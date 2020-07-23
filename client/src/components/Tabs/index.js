@@ -18,6 +18,8 @@ class SignUpIn extends Component {
       userName: "",
       password: "",
       passwordConf: "",
+      donor: "",
+      foodbanker: "",
     };
   }
 
@@ -48,6 +50,8 @@ class SignUpIn extends Component {
           address: this.state.address.trim(),
           email: this.state.email.trim(),
           password: this.state.password.trim(),
+          donor: this.state.donor.trim(),
+          foodbanker: this.state.foodbanker.trim(),
         })
         .then((res) => {
           if (res.status === 200) {
@@ -98,156 +102,198 @@ class SignUpIn extends Component {
             <div className="sign-up-form">
               <form class="sign-up-form">
                 <div class="sign-up-fields">
-                <label class="sign-up-label"> First Name:</label>
-                    <input
-                      type="text"
-                      value={this.state.firstName}
-                      name="firstName"
-                      placeholder="First Name"
-                      className="input secondary"
-                      onChange={this.handleInputChange}
-                    />
+                  <label class="sign-up-label"> First Name:</label>
+                  <input
+                    type="text"
+                    value={this.state.firstName}
+                    name="firstName"
+                    placeholder="First Name"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
 
-                    <label class="sign-up-label"> Last Name:</label>
+                  <label class="sign-up-label"> Last Name:</label>
 
-                    <input
-                      type="text"
-                      value={this.state.lastName}
-                      name="lastName"
-                      placeholder="Last Name"
-                      className="input secondary"
-                      onChange={this.handleInputChange}
-                    />
+                  <input
+                    type="text"
+                    value={this.state.lastName}
+                    name="lastName"
+                    placeholder="Last Name"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
 
-                    <label class="sign-up-label"> Username:</label>
+                  <label class="sign-up-label"> Username:</label>
 
-                    <input
-                      type="text"
-                      value={this.state.userName}
-                      name="userName"
-                      placeholder="User Name"
-                      className="input secondary"
-                      onChange={this.handleInputChange}
-                    />
+                  <input
+                    type="text"
+                    value={this.state.userName}
+                    name="userName"
+                    placeholder="User Name"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
 
-                    <label class="sign-up-label"> Email:</label>
+                  <label class="sign-up-label"> Email:</label>
 
-                    <input
-                      type="text"
-                      value={this.state.email}
-                      name="email"
-                      placeholder="Email Address"
-                      className="input secondary"
-                      onChange={this.handleInputChange}
-                    />
+                  <input
+                    type="text"
+                    value={this.state.email}
+                    name="email"
+                    placeholder="Email Address"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
 
-                    <label class="sign-up-label"> Password:</label>
+                  <label class="sign-up-label"> Password:</label>
 
-                    <input
-                      type="password"
-                      value={this.state.password}
-                      name="password"
-                      placeholder="Enter Password"
-                      className="input secondary"
-                      onChange={this.handleInputChange}
-                    />
+                  <input
+                    type="password"
+                    value={this.state.password}
+                    name="password"
+                    placeholder="Enter Password"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
 
-                    <label class="sign-up-label"> Confirm Password:</label>
+                  <label class="sign-up-label"> Confirm Password:</label>
 
-                    <input
-                      type="password"
-                      value={this.state.passwordConf}
-                      name="passwordConf"
-                      placeholder="Confirm Password"
-                      className="input secondary"
-                      onChange={this.handleInputChange}
-                    />
+                  <input
+                    type="password"
+                    value={this.state.passwordConf}
+                    name="passwordConf"
+                    placeholder="Confirm Password"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
 
-                    <label class="sign-up-label"> Address:</label>
+                  <label class="sign-up-label"> Address:</label>
 
-                    <input
-                      type="text"
-                      value={this.state.address}
-                      name="address"
-                      placeholder="Address"
-                      className="input secondary"
-                      onChange={this.handleInputChange}
-                    />
+                  <input
+                    type="text"
+                    value={this.state.address}
+                    name="address"
+                    placeholder="Address"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
 
-                    <label class="sign-up-label"> State:</label>
+                  <label class="sign-up-label"> State:</label>
 
-                    <select
-                      id="states"
-                      value={this.state.state}
-                      name="state"
-                      className="input secondary"
-                      onChange={this.handleInputChange}
-                    >
-                      <option value="AL">AL</option>
-                      <option value="AK">AK</option>
-                      <option value="AZ">AZ</option>
-                      <option value="AR">AR</option>
-                      <option value="CA">CA</option>
-                      <option value="CO">CO</option>
-                      <option value="CT">CT</option>
-                      <option value="DE">DE</option>
-                      <option value="FL">FL</option>
-                      <option value="GA">GA</option>
-                      <option value="HI">HI</option>
-                      <option value="ID">ID</option>
-                      <option value="IL">IL</option>
-                      <option value="IN">IN</option>
-                      <option value="IA">IA</option>
-                      <option value="KS">KS</option>
-                      <option value="KY">KY</option>
-                      <option value="LA">LA</option>
-                      <option value="ME">ME</option>
-                      <option value="MD">MD</option>
-                      <option value="MA">MA</option>
-                      <option value="MI">MI</option>
-                      <option value="MN">MN</option>
-                      <option value="MS">MS</option>
-                      <option value="MO">MO</option>
-                      <option value="MT">MT</option>
-                      <option value="NE">NE</option>
-                      <option value="NV">NV</option>
-                      <option value="NH">NH</option>
-                      <option value="NJ">NJ</option>
-                      <option value="NM">NM</option>
-                      <option value="NY">NY</option>
-                      <option value="NC">NC</option>
-                      <option value="ND">ND</option>
-                      <option value="OH">OH</option>
-                      <option value="OK">OK</option>
-                      <option value="OR">OR</option>
-                      <option value="PA">PA</option>
-                      <option value="RI">RI</option>
-                      <option value="SC">SC</option>
-                      <option value="SD">SD</option>
-                      <option value="TN">TN</option>
-                      <option value="TX">TX</option>
-                      <option value="UT">UT</option>
-                      <option value="VT">VT</option>
-                      <option value="VA">VA</option>
-                      <option value="WA">WA</option>
-                      <option value="WV">WV</option>
-                      <option value="WI">WI</option>
-                      <option value="WY">WY</option>
-                    </select>
+                  <select
+                    id="states"
+                    value={this.state.state}
+                    name="state"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  >
+                    <option value="AL">AL</option>
+                    <option value="AK">AK</option>
+                    <option value="AZ">AZ</option>
+                    <option value="AR">AR</option>
+                    <option value="CA">CA</option>
+                    <option value="CO">CO</option>
+                    <option value="CT">CT</option>
+                    <option value="DE">DE</option>
+                    <option value="FL">FL</option>
+                    <option value="GA">GA</option>
+                    <option value="HI">HI</option>
+                    <option value="ID">ID</option>
+                    <option value="IL">IL</option>
+                    <option value="IN">IN</option>
+                    <option value="IA">IA</option>
+                    <option value="KS">KS</option>
+                    <option value="KY">KY</option>
+                    <option value="LA">LA</option>
+                    <option value="ME">ME</option>
+                    <option value="MD">MD</option>
+                    <option value="MA">MA</option>
+                    <option value="MI">MI</option>
+                    <option value="MN">MN</option>
+                    <option value="MS">MS</option>
+                    <option value="MO">MO</option>
+                    <option value="MT">MT</option>
+                    <option value="NE">NE</option>
+                    <option value="NV">NV</option>
+                    <option value="NH">NH</option>
+                    <option value="NJ">NJ</option>
+                    <option value="NM">NM</option>
+                    <option value="NY">NY</option>
+                    <option value="NC">NC</option>
+                    <option value="ND">ND</option>
+                    <option value="OH">OH</option>
+                    <option value="OK">OK</option>
+                    <option value="OR">OR</option>
+                    <option value="PA">PA</option>
+                    <option value="RI">RI</option>
+                    <option value="SC">SC</option>
+                    <option value="SD">SD</option>
+                    <option value="TN">TN</option>
+                    <option value="TX">TX</option>
+                    <option value="UT">UT</option>
+                    <option value="VT">VT</option>
+                    <option value="VA">VA</option>
+                    <option value="WA">WA</option>
+                    <option value="WV">WV</option>
+                    <option value="WI">WI</option>
+                    <option value="WY">WY</option>
+                  </select>
 
-                    <label class="sign-up-label"> Zip Code:</label>
+                  <label class="sign-up-label">
+                    {" "}
+                    If Donor, say "Yes" here:
+                  </label>
 
-                    <input
-                      type="text"
-                      value={this.state.zipCode}
-                      name="zipCode"
-                      placeholder="Enter Zip Code"
-                      className="input secondary"
-                      onChange={this.handleInputChange}
-                    />
+                  <input
+                    type="text"
+                    value={this.state.donor}
+                    name="donor"
+                    placeholder=""
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
+
+                  <label class="sign-up-label">
+                    {" "}
+                    If Foodbank Partner, say "Yes" here:
+                  </label>
+
+                  <input
+                    type="text"
+                    value={this.state.foodbanker}
+                    name="foodbanker"
+                    placeholder=""
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
+                  {/* <select
+                    id="states"
+                    value={this.state.userType}
+                    name="state"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  >
+                    <option value="Donor">Donor</option>
+                    <option value="Foodbank">Foodbank Partner</option>
+                  </select> */}
+
+                  <label class="sign-up-label"> Zip Code:</label>
+
+                  <input
+                    type="text"
+                    value={this.state.zipCode}
+                    name="zipCode"
+                    placeholder="Enter Zip Code"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
                 </div>
 
-                <input className = "button primary" type="submit" onClick={this.handleFormSubmit} />
+                <input
+                  className="button primary"
+                  type="submit"
+                  onClick={this.handleFormSubmit}
+                />
               </form>
             </div>
           </div>
@@ -262,30 +308,33 @@ class SignUpIn extends Component {
             <div className="sign-in-form">
               <form>
                 <div class="sign-in-fields">
-                <label> User Name:</label>
+                  <label> User Name:</label>
 
-                <input
-                  type="text"
-                  value={this.state.userName}
-                  name="userName"
-                  placeholder="User Name"
-                  className="input secondary"
-                  onChange={this.handleInputChange}
-                />
+                  <input
+                    type="text"
+                    value={this.state.userName}
+                    name="userName"
+                    placeholder="User Name"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
 
-                <label> Password:</label>
+                  <label> Password:</label>
 
-                <input
-                  type="password"
-                  value={this.state.password}
-                  name="password"
-                  placeholder="Enter Password"
-                  className="input secondary"
-                  onChange={this.handleInputChange}
-                />
-
+                  <input
+                    type="password"
+                    value={this.state.password}
+                    name="password"
+                    placeholder="Enter Password"
+                    className="input secondary"
+                    onChange={this.handleInputChange}
+                  />
                 </div>
-                <input className="button primary" type="submit" onClick={this.handleLogin} />
+                <input
+                  className="button primary"
+                  type="submit"
+                  onClick={this.handleLogin}
+                />
               </form>
             </div>
           </div>
