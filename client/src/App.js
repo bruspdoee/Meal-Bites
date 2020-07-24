@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Redirect,
+  // Switch,
+  // Redirect,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
-import SignUp from "./components/SignUp";
+// import SignUp from "./components/SignUp";
 import About from "./components/About";
 import Posting from "./components/PostingPage";
 import Footer from "./components/Footer";
@@ -23,7 +23,6 @@ function App() {
   const [alertInfo, setAlertInfo] = useState({ message: "", theme: "success" });
 
   useEffect(() => {
-    
     // only setting user if we got one, to avoid rerendering the page.
     userAPI
       .authenticate()
@@ -102,7 +101,6 @@ function App() {
           exact
           path="/user"
           {...{ user, setLoading, Component: User }}
-          
         />
         <Footer />
       </div>
