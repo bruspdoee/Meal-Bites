@@ -15,11 +15,39 @@ class newPosting extends React.Component {
       comments: "",
       donor: this.props.user.donor,
       foodbanker: this.props.user.foodbanker,
+      donatedHistory: [],
     };
   }
 
   componentDidMount() {
-    console.log(this.state.userName);
+    postingsAPI
+      .findAll()
+      .then((res) => {
+        console.log(res);
+
+        this.setState({
+          donatedHistory: res.data.map((donation) => {
+            const donationTime =
+              donation.createdAt[6] +
+              "/" +
+              donation.createdAt[8] +
+              donation.createdAt[9] +
+              "/2020";
+
+            return {
+              userName: donation.userName,
+              donatedItem: donation.donatedItem,
+              donatedItemCategory: donation.donatedItemCategory,
+              quantity: donation.quantity,
+              date: donationTime,
+              comments: donation.comments,
+            };
+          }),
+        });
+
+        console.log(this.state.donatedHistory);
+      })
+      .catch((e) => console.log(e));
   }
 
   handleInputChange = (event) => {
@@ -106,7 +134,25 @@ class newPosting extends React.Component {
     } else if (this.state.foodbanker === "Yes");
     return (
       <div class="donate-content fixed-width">
-        <h3 class="h2">Claim recently made donations</h3>
+        <h3 class="h2">Claim Recent Donations</h3>
+
+        {this.state.donatedHistory.map((donatedItem) => (
+          <div class="donate-grid">
+            <div class="donate-container">
+              <p class="donate-item">
+                {donatedItem.userName} donated {donatedItem.quantity}{" "}
+                {donatedItem.donatedItem} on {donatedItem.date}
+              </p>
+              <p class="donate-comment border-accent">
+                {" "}
+                {donatedItem.comments}{" "}
+              </p>
+              <button variant="secondary" size="lg" active>
+                Claim
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     );
   }
