@@ -25,14 +25,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    // donor: {
-    //   type: DataTypes.STRING,
-    //   // allowNull: false,
-    // },
-    // foodbanker: {
-    //   type: DataTypes.STRING,
-    //   // allowNull: false,
-    // },
   });
   return Postings;
 };
