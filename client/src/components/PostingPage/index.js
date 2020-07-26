@@ -76,6 +76,10 @@ class newPosting extends React.Component {
       .catch((e) => console.log(e));
   };
 
+  // handleClaim = (event) =>{
+
+  // }
+
   render() {
     if (this.state.donor === "Yes") {
       return (
@@ -147,7 +151,12 @@ class newPosting extends React.Component {
                 {" "}
                 {donatedItem.comments}{" "}
               </p>
-              <button variant="secondary" size="lg" active>
+              <button
+                variant="secondary"
+                size="lg"
+                active
+                // onClick={this.handleFormSubmit}
+              >
                 Claim
               </button>
             </div>
