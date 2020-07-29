@@ -13,8 +13,9 @@ class newPosting extends React.Component {
       donatedItemCategory: "",
       quantity: "",
       comments: "",
-      donor: this.props.user.donor,
-      foodbanker: this.props.user.foodbanker,
+      // donor: this.props.user.donor,
+      // foodbanker: this.props.user.foodbanker,
+      userType: this.props.user.userType,
       donatedHistory: [],
     };
   }
@@ -76,8 +77,12 @@ class newPosting extends React.Component {
       .catch((e) => console.log(e));
   };
 
+  // handleClaim = (event) =>{
+
+  // }
+
   render() {
-    if (this.state.donor === "Yes") {
+    if (this.state.userType === false) {
       return (
         <div class="posting-page">
           <h3 class="h2 fixed-width">Welcome {this.state.userName}</h3>
@@ -131,30 +136,35 @@ class newPosting extends React.Component {
           </form>
         </div>
       );
-    } else if (this.state.foodbanker === "Yes");
-    return (
-      <div class="donate-content fixed-width">
-        <h3 class="h2">Claim Recent Donations</h3>
+    } else
+      return (
+        <div class="donate-content fixed-width">
+          <h3 class="h2">Claim Recent Donations</h3>
 
-        {this.state.donatedHistory.map((donatedItem) => (
-          <div class="donate-grid">
-            <div class="donate-container">
-              <p class="donate-item">
-                {donatedItem.userName} donated {donatedItem.quantity}{" "}
-                {donatedItem.donatedItem} on {donatedItem.date}
-              </p>
-              <p class="donate-comment border-accent">
-                {" "}
-                {donatedItem.comments}{" "}
-              </p>
-              <button variant="secondary" size="lg" active>
-                Claim
-              </button>
+          {this.state.donatedHistory.map((donatedItem) => (
+            <div class="donate-grid">
+              <div class="donate-container">
+                <p class="donate-item">
+                  {donatedItem.userName} donated {donatedItem.quantity}{" "}
+                  {donatedItem.donatedItem} on {donatedItem.date}
+                </p>
+                <p class="donate-comment border-accent">
+                  {" "}
+                  {donatedItem.comments}{" "}
+                </p>
+                <button
+                  variant="secondary"
+                  size="lg"
+                  active
+                  // onClick={this.handleFormSubmit}
+                >
+                  Claim
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    );
+          ))}
+        </div>
+      );
   }
 }
 

@@ -9,22 +9,26 @@ class SignUpIn extends Component {
     super(props);
     this.state = {
       activeTab: 0,
-      firstName: "",
-      lastName: "",
-      address: "",
+      firstName: "brus",
+      lastName: "brus",
+      address: "brus",
       state: "",
-      zipCode: "",
-      email: "",
-      userName: "",
-      password: "",
-      passwordConf: "",
-      donor: "",
-      foodbanker: "",
+      zipCode: "10305",
+      email: "brus@brus.com",
+      userName: "brus",
+      password: "brus",
+      passwordConf: "brus",
+      // donor: "",
+      // foodbanker: "",
+      userType: false,
     };
   }
 
   handleInputChange = (event) => {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
+    if (name === "userType") {
+      value = event.target.checked;
+    }
     this.setState({
       [name]: value,
     });
@@ -50,8 +54,10 @@ class SignUpIn extends Component {
           address: this.state.address.trim(),
           email: this.state.email.trim(),
           password: this.state.password.trim(),
-          donor: this.state.donor.trim(),
-          foodbanker: this.state.foodbanker.trim(),
+          // donor: this.state.donor.trim(),
+          // foodbanker: this.state.foodbanker.trim(),
+          userType: this.state.userType,
+          zipCode: this.state.zipCode.trim(),
         })
         .then((res) => {
           if (res.status === 200) {
@@ -239,7 +245,7 @@ class SignUpIn extends Component {
                     <option value="WY">WY</option>
                   </select>
 
-                  <label class="sign-up-label">
+                  {/* {/* <label class="sign-up-label">
                     {" "}
                     If Donor, say "Yes" here:
                   </label>
@@ -251,17 +257,16 @@ class SignUpIn extends Component {
                     placeholder=""
                     className="input secondary"
                     onChange={this.handleInputChange}
-                  />
+                  /> */}
 
                   <label class="sign-up-label">
                     {" "}
-                    If Foodbank Partner, say "Yes" here:
+                    Click here if Foodbank Partner :
                   </label>
 
                   <input
-                    type="text"
-                    value={this.state.foodbanker}
-                    name="foodbanker"
+                    type="checkbox"
+                    name="userType"
                     placeholder=""
                     className="input secondary"
                     onChange={this.handleInputChange}
