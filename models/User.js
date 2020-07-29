@@ -31,19 +31,27 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    donor: {
-      type: DataTypes.STRING,
+    // donor: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+    // foodbanker: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+
+    // 0 will show "donor" 1 will show "foodbank"
+
+    userType: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    foodbanker: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    // userType: {
+    // zipCode: {
     //   type: DataTypes.STRING,
     //   allowNull: false,
     // },
   });
+
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);

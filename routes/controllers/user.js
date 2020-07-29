@@ -40,8 +40,9 @@ module.exports = {
       address: req.body.address,
       email: req.body.email,
       password: req.body.password,
-      donor: req.body.donor,
-      foodbanker: req.body.foodbanker,
+      // donor: req.body.donor,
+      // foodbanker: req.body.foodbanker,
+      userType: req.body.userType,
     })
 
       // redirect to login

@@ -7,8 +7,9 @@ class User extends React.Component {
     super(props);
     this.state = {
       userName: this.props.user.userName,
-      donor: this.props.user.donor,
-      foodbanker: this.props.user.foodbanker,
+      // donor: this.props.user.donor,
+      // foodbanker: this.props.user.foodbanker,
+      userType: this.props.user.userType,
       donatedHistory: [],
       donatedHistoryNumbers: [],
     };
@@ -67,7 +68,7 @@ class User extends React.Component {
   }
 
   render() {
-    if (this.state.donor === "Yes") {
+    if (!this.state.userType) {
       return (
         <div class="user-profile-container fixed-width">
           <h3 class="h2 border-accent">
@@ -94,24 +95,25 @@ class User extends React.Component {
           ))}
         </div>
       );
-    } else if (this.state.foodbanker === "Yes");
-    return (
-      <div class="user-profile-container fixed-width">
-        <h3 class="h2 border-accent">
-          Welcome Back {this.state.userName}, thank you for being our partner!
-        </h3>
-        <h5>Partners since 2020</h5>
-        <h4>Recently Claimed Items </h4>
-        {this.state.donatedHistory.map((donatedItem) => (
-          <div>
-            <p>
-              {donatedItem.quantity} {donatedItem.donatedItem} on{" "}
-              {donatedItem.date}
-            </p>
-          </div>
-        ))}
-      </div>
-    );
+    } else {
+      return (
+        <div class="user-profile-container fixed-width">
+          <h3 class="h2 border-accent">
+            Welcome Back {this.state.userName}, thank you for being our partner!
+          </h3>
+          <h5>Partners since 2020</h5>
+          <h4>Recently Claimed Items </h4>
+          {this.state.donatedHistory.map((donatedItem) => (
+            <div>
+              <p>
+                {donatedItem.quantity} {donatedItem.donatedItem} on{" "}
+                {donatedItem.date}
+              </p>
+            </div>
+          ))}
+        </div>
+      );
+    }
   }
 }
 
