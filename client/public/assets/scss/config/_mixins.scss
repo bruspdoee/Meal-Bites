@@ -72,3 +72,17 @@
         margin: $amount;
     }
 }
+
+$breakpoints: (
+    'small': 425px,
+    'medium': 768px,
+    'large': 1024px
+);
+
+@mixin media($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}

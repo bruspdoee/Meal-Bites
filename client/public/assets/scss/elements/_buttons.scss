@@ -2,18 +2,18 @@
     text-align: center;
 
     &.primary {
-        @include padding(y, $default);
-        @include padding(x, $xlarge);
-        background-color: $color-primary;
-        border: none;
-        border-radius: 40px;
-        color: $color-tertiary;
+        @include padding(y, $small);
+        @include padding(x, $large);        
+        border: 5px solid $color-primary;
+        border-radius: 20px;
+        color: $color-secondary;
         font-family: $font-secondary;
-        max-width: 50%;
+        font-weight: 700;
         text-decoration: none;
 
         &:hover {
-            background-color: $color-primary-hover;
+            background-color: $color-primary;
+            color: $color-tertiary;
         }
     }
 
