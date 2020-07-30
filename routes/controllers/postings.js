@@ -44,9 +44,12 @@ module.exports = {
 
   findTotalDonationsNumber: (req, res, next) => {
     db.Postings.findAll({
-      where: {userName: req.params.userName},
-      attributes: ["donatedItemCategory", [sequelize.fn("sum", sequelize.col("quantity")), "total"],],
-      group: ["Postings.donatedItemCategory"]
+      where: { userName: req.params.userName },
+      attributes: [
+        "donatedItemCategory",
+        [sequelize.fn("sum", sequelize.col("quantity")), "total"],
+      ],
+      group: ["Postings.donatedItemCategory"],
     })
       .then((donations) => res.json(donations))
       .catch((err) => {
@@ -54,5 +57,16 @@ module.exports = {
         next(err);
       });
   },
-};
 
+  claimDonation: (req, res, next) => {
+    console.log(req.params.id);
+    db.Postings.findOne({
+      where: { donatedItem: req.params.id },
+    }).then((result) => {
+      result.update({
+        userName: req.params.userName,
+      });
+      res.send("updated");
+    });
+  },
+};

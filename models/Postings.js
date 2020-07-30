@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    // foodbankClaim: {
+    //   type: DataTypes.INTEGER,
+    // },
   });
   return Postings;
 };

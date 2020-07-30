@@ -7,10 +7,12 @@ router.route("/").post(postingsFunctions.newPosting);
 
 router.route("/getdonations/:userName").get(postingsFunctions.findDonations);
 
-router.route("/getdonationsnumber/:userName").get(postingsFunctions.findTotalDonationsNumber);
+router
+  .route("/getdonationsnumber/:userName")
+  .get(postingsFunctions.findTotalDonationsNumber);
 
 router.route("/getall").get(postingsFunctions.findAll);
 
-
+router.route("/claim/:id/:userName").get(postingsFunctions.claimDonation);
 
 module.exports = router;
