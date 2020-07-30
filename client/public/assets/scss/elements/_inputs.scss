@@ -1,14 +1,12 @@
-$input-radius: 40px;
-
 .input {
     text-align: center;
 
     &.primary {
-        @include padding(y, $default);
+        @include padding(y, $xsmall);
         @include padding(x, $xlarge);
-        border-color: $color-primary;
-        border-radius: $input-radius;
+        border: 1px solid $color-primary;
         max-width: 50%;
+        font-size: 16px;
 
         &:focus {
             outline: none;
@@ -18,8 +16,8 @@ $input-radius: 40px;
     &.secondary {
         @include padding(y, $xsmall);
         @include padding(x, $large);
-        border-color: $color-primary;
-        border-radius: $input-radius;
+        border: 1px solid $color-primary;
+        font-size: 16px;
 
         &:focus {
             outline: none;

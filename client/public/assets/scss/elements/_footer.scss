@@ -21,6 +21,13 @@
     display: grid;
     grid-template-rows: repeat(2, 1fr);
 
+    > * {
+        align-content: flex-end;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
     > *:first-child:not(.contact-info) {
         grid-row-start: 1;
     }
@@ -42,14 +49,10 @@
     }
 }
 
-.footer-nav {
-    display: flex;
-    justify-content: flex-end;
-}
-
 .footer-nav-list {
     display: flex;
     flex-direction: column;
+    text-align: right;
     font-family: $font-secondary;
     font-weight: 700;
     text-transform: uppercase;
