@@ -77,9 +77,19 @@ class newPosting extends React.Component {
       .catch((e) => console.log(e));
   };
 
-  // handleClaim = (event) =>{
-
-  // }
+  handleClaimSubmit = (event, id) => {
+    event.preventDefault();
+    alert(id);
+    postingsAPI
+      .claimDonation({
+        userName: this.state.userName,
+        donatedItem: id,
+      })
+      .then((res) => {
+        this.props.history.push("/user");
+      })
+      .catch((e) => console.log(e));
+  };
 
   render() {
     if (this.state.userType === false) {
@@ -156,7 +166,9 @@ class newPosting extends React.Component {
                   variant="secondary"
                   size="lg"
                   active
-                  // onClick={this.handleFormSubmit}
+                  onClick={(e) => {
+                    this.handleClaimSubmit(e, donatedItem.donatedItem);
+                  }}
                 >
                   Claim
                 </button>

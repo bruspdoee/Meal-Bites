@@ -33,7 +33,7 @@ class Inventory extends React.Component {
               donatedItemCategory: donation.donatedItemCategory,
               quantity: donation.quantity,
               date: donationTime,
-              comments: donation.comments
+              comments: donation.comments,
             };
           }),
         });
@@ -55,7 +55,10 @@ class Inventory extends React.Component {
                 {donatedItem.userName} donated {donatedItem.quantity}{" "}
                 {donatedItem.donatedItem} on {donatedItem.date}
               </p>
-              <p class="donate-comment border-accent"> {donatedItem.comments} </p>
+              <p class="donate-comment border-accent">
+                {" "}
+                {donatedItem.comments}{" "}
+              </p>
             </div>
           </div>
         ))}
